@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+
+    web:
+        image: nginx:latest
+        ports:
+            - "8088:80"
+        volumes:
+            - ./code:/usr/share/nginx/html/
+            - ./site.conf:/etc/nginx/conf.d/default.conf
+        depends_on:
+            - php
+        networks:
+            - fe
+            - be
+
+    php:
+        image: php:7.4-fpm
+        volumes:
+            - ./code:/usr/share/nginx/html
+            - ./code.ini:/usr/local/etc/php/conf.d/code.ini
+        networks:
+            - be
+
+    composer:
+        image: composer:latest
+        command: ["composer", "install"]
+        volumes:
+            - ./code:/app
+
+networks:
+    fe:
+    be:
+

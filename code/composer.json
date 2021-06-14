@@ -1,0 +1,10 @@
+{
+    "name": "blue/async-php",
+    "description": "Test implementation of blue async php.",
+    "keywords": ["blue", "async", "php-fpm"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "hollodotme/fast-cgi-client": "3.1.*"
+    }
+}
